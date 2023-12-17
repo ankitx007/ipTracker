@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script> -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <title>Frontend Mentor | IP Address Tracker</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ip-search-box">
+      <h2>IP Address Tracker</h2>
+      <input
+        type="text"
+        id="ipInputBox"
+        placeholder="  Search for any IP address or domain"
+      />
+      <div class="attribution" style="color: white">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="mailto:7ankit4@gmail.com">Ankit Sharma</a>.
+      </div>
+      <button id="Search">></button>
+      <div class="card">
+        <div class="item">
+          <p id="field">IP ADDRESS</p>
+          <p class="value" id="ip">192.212.174.101</p>
+        </div>
+        <div class="vl"></div>
+        <div class="item">
+          <p id="field">LOCATION</p>
+          <p class="value" id="location">Brooklyn, NY 10001</p>
+        </div>
+        <div class="vl"></div>
+        <div class="item">
+          <p id="field">TIMEZONE</p>
+          <p class="value" id="timezone">UTC -05:00</p>
+        </div>
+        <div class="vl"></div>
+        <div class="item">
+          <p id="field">ISP</p>
+          <p class="value" id="isp">SpaceX Starlink</p>
+        </div>
+        <div id="loader"></div>
+      </div>
+    </div>
+    <div id="map"></div>
+    <!-- add offset value dynamically using the API -->
+
+    <script src="script.js"></script>
+    <script>
+      ((g) => {
+        var h,
+          a,
+          k,
+          p = "The Google Maps JavaScript API",
+          c = "google",
+          l = "importLibrary",
+          q = "__ib__",
+          m = document,
+          b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+          r = new Set(),
+          e = new URLSearchParams(),
+          u = () =>
+            h ||
+            (h = new Promise(async (f, n) => {
+              await (a = m.createElement("script"));
+              e.set("libraries", [...r] + "");
+              for (k in g)
+                e.set(
+                  k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                  g[k]
+                );
+              e.set("callback", c + ".maps." + q);
+              a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+              d[q] = f;
+              a.onerror = () => (h = n(Error(p + " could not load.")));
+              a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+              m.head.append(a);
+            }));
+        d[l]
+          ? console.warn(p + " only loads once. Ignoring:", g)
+          : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+      })({ key: "AIzaSyB8OyJCakkrjy50s2xbLBXDDqoLv9Go0p0", v: "weekly" });
+    </script>
+  </body>
+</html>
